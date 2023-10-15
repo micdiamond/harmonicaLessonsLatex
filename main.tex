@@ -1,0 +1,271 @@
+% Up to line 96
+%changed to hole numbers 
+% \2 = 2draw, 
+% \22 is 2blow
+% \222 is 2 draw bend
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{musixtex}
+% \usetikzlibrary{shapes.geometric, arrows}
+% \usepackage{tcolorbox}
+\usepackage{fancybox}
+
+% Nested imported
+\usepackage{import}
+
+% Footer
+\usepackage{fancyhdr}
+
+
+% \usepackage{amsmath}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+%Skulls and witches
+\usepackage{halloweenmath}
+%textclouds
+\usepackage{tikz,tabto,lipsum}
+\usetikzlibrary{shapes}
+
+% numbersAndArrows
+\usepackage{mathabx}  % for \curvearrowbotleft
+\usepackage{accents}  % for \underaccent
+\usepackage{xcolor}   % for \color
+\usepackage{graphicx} % for \resizebox
+\usepackage{calc}     % for \widthof
+\usepackage{bm}       % for \bm (bold symbol)
+\newcommand*{\uarr}[1]{\underaccent{\resizebox{\widthof{#1}}{\height}{$\color{red}\bm{\curvearrowbotleft}$}}{#1}}
+
+% BigNumbers
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+%% Set these if you want to globally atler the arrow styles
+%% for the top and bottom arrows.
+\tikzset{TopArrowStyle/.style={}}%
+\tikzset{BottomArrowStyle/.style={}}%
+
+% Creating new commands on the scale degrees for the notes
+%Blues scale, 2 draw to 6 blow
+%  %  spaces and extra brackets are to increase the space
+% first octave
+
+% chords
+
+\newcommand{\ottd}{ \circled{$\downarrow$ 123} } 
+\newcommand{\ottb}{$\uparrow$ 123 } 
+\newcommand{\kottb}{$\uparrow$ \textbf{K} 123 } 
+
+% 1blow
+\newcommand{\one}{{ \uparrow$ 1 } }
+
+% 1draw bend
+\newcommand{\odb}{ {\uarr {\circled{\hookdownarrow$ 1} } } }
+
+% 1draw
+\newcommand{\1}{{ \circled{$\downarrow$ 1} } }
+
+% 2blow
+\newcommand{\two}{{ \uparrow$ 2 } }
+
+% 2draw bend
+\newcommand{\w}{{ \uarr {\circled{\hookdownarrow$ 2} } } }
+\newcommand{\tdb}{{ \uarr {\circled{\hookdownarrow$ 2} } } }
+
+%2draw
+\newcommand{\2}{{ \circled{$\downarrow$ 2} } }
+
+%2draw tongued
+\newcommand{\tdta}{{ \circled{$\downarrow$ 2 (ta)} } }
+
+% 3blow
+\newcommand{\three}{{ \uparrow$ 3 } }
+
+%3draw
+\newcommand{\3}{{ \circled{$\downarrow$ 3} } }
+
+%3drawbend
+\newcommand{\threedb}{ {{\uarr {\circled{\hookdownarrow$ 3} } }} }
+\newcommand{\thdb}{ {{\uarr {\circled{\hookdownarrow$ 3} } }} }
+
+
+%4blow 
+\newcommand{\f}{{ \uparrow$ 4 } }
+\newcommand{\four}{{ \uparrow$ 4 } }
+%4drawbend
+\newcommand{\e}{ {{\uarr {\circled{\hookdownarrow$ 4} } }} }
+\newcommand{\fdb}{ {{\uarr {\circled{\hookdownarrow$ 4} } }} }
+\newcommand{\fourdb}{ {{\uarr {\circled{\hookdownarrow$ 4} } }} }
+
+%4drawbendtongued
+\newcommand{\fdbta}{ {{\uarr {\circled{\hookdownarrow$ 4 (ta)} } }} }
+
+%4draw
+\newcommand{\4}{{ \circled{ $\downarrow$ 4 } } }
+
+\newcommand{\fdv}{{ \circled{ $\downarrow$ 4 v } } }
+
+%4draw tongued
+\newcommand{\fdta}{{ \circled{ $\downarrow$ 4 (ta)} } }
+
+%45draw
+\newcommand{\ffd}{ {{\circled{\downarrow$ 4 5} } } }            
+%45blow
+\newcommand{\ffb}{ {\uparrow$ 4 5}}            
+
+            
+%34draw
+\newcommand{\tfd}{ {{\circled{\downarrow$ 3 4 } } } }            
+%34blow
+\newcommand{\tfb}{ {\uparrow$ 3 4}}            
+            
+%23draw
+\newcommand{\ttd}{ {{\circled{\downarrow$ 2 3} } } }    
+            
+            
+%45drawbend
+\newcommand{\fourfivedb}{ {{\uarr {\circled{\hookdownarrow$ 4 5} } }} }
+
+%45drawbend
+\newcommand{\ffdb}{ {{\uarr {\circled{\hookdownarrow$ 4 5} } }} }
+    
+
+\newcommand{\ffdbr}{\uarr{{\ovalbox{$\hookdownarrow$ 4 5 \circled{$\nearrow$} {\downarrow$ 4 5 }}}}}
+
+% \newcommand{\ffdbr}{\uarr{{\ovalbox{$\hookdownarrow$ 4 5 \nearrow{\downarrow$ 4 5 }}}}}
+
+
+
+\newcommand{\ffdbrB}{\uarr{\circled{\hookdownarrow$ 4 5 }} \nearrow
+\circled{\downarrow$ 4 5 }}
+
+%warble45draw 
+\newcommand{\warble}{{ \circled{w$\downarrow$4545...} } }
+
+\newcommand{\bendintowarble}
+    {
+        {
+            {\uarr 
+                {\circled
+                    {\hookdownarrow$ 4} 
+                }
+                \nearrow$
+            { 
+                \circled{ $\downarrow$ 4 } 
+            } $\rightarrow$
+            \circled{w$\downarrow$5454...} 
+            }
+        }
+    }
+
+\newcommand{\bendintowarbleA}
+    {
+        {\circled{
+            {\uarr 
+                % {\circled
+                    {\hookdownarrow$ 4} 
+                % }
+                \nearrow$
+            { 
+                % \circled
+                { $\downarrow$ 4 } 
+            } 
+            $\rightarrow$
+            w$\downarrow$4545...} 
+            }
+        }
+    }
+
+
+
+%5blow 
+\newcommand{\fi}{{ \uparrow$ 5 } }
+\newcommand{\five}{{ \uparrow$ 5 } }
+
+%5draw
+\newcommand{\5}{{ \circled{ $\downarrow$ 5 } } }
+
+%6blow
+\newcommand{\six}{{ \uparrow$ 6 } }
+% DEL Previously this was \newcommand{\6}{{ \uparrow$ 6 } }
+
+%6 draw bend
+% BROKEN
+% \newcommand{\sdb}{ {{\uarr {\circled{\hookdownarrow$ 6} } }} }
+% \newcommand{\sixdb}{ {{\uarr {\circled{\hookdownarrow$ 6} } }} }
+
+% 6 draw
+\newcommand{\6}{{ \circled{ $\downarrow$ 6 } } }
+
+% 7blow 
+\newcommand{\seven}
+
+
+% UP TO HERE
+
+
+\newcommand{\flattonatural}{
+ \circled{$\flat \nearrow\natural$}}
+
+%   For spacing 
+\newcommand{\spaceInvisDot}{\color{white}.\color{black}\\}
+    
+
+\newcommand{\hookuparrow}{\mathrel{\rotatebox[origin=c]{90}{$\hookrightarrow$}}}
+\newcommand{\hookdownarrow}{\mathrel{\rotatebox[origin=c]{-90}{$\hookrightarrow$}}}
+
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=4pt] (char) {#1};}}
+
+
+\newcommand\margincloud[1]{{%
+  \tabto{\textwidth}%
+  \llap{%
+    \rule[-\dp\strutbox]{.5pt}{\dp\strutbox}%
+    \rule[-\dp\strutbox]{\dimexpr\textwidth-\TabPrevPos\relax}{.5pt}%
+    \kern-3pt
+    \smash{\rlap{\rotatebox[origin=lb]{45}{\rule[-\dp\strutbox]{60pt}{.5pt}}}}}%
+  \tabto*{\TabPrevPos}%
+  \marginpar{%
+    \smash{\begin{tikzpicture}
+    \node [cloud, fill=blue!5, draw,cloud puffs=10,cloud puff arc=120, 
+       aspect=1.5, inner ysep=1em]{\parbox{1in}{\raggedright#1}};
+    \end{tikzpicture}%
+  }}%
+}}
+
+
+
+\title{Harmonica Workshop - The Diamonica Method}
+\author{Michael Diamond}
+\date{2021}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lfoot{Michael Diamond Harmonica - Diamonica Method \textcopyright}
+\rfoot{Page \thepage}
+
+
+\begin{document}
+
+\maketitle
+% \Large
+
+% Workshop
+% \input{0_latex_control_flow/3_workshop_control_flow}
+
+% Book
+\input{0_latex_control_flow/2_book_control_flow.tex}
+
+\newpage 
+
+\input{0.1_active_lessons_modules/4_the_blues_scale/1.1_adv_blues_scale_overview}
+
+% 4_the_blues_scale/1.1_adv_blues_scale_overview.tex}
+
+\end{document}

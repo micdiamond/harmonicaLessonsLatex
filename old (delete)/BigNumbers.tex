@@ -1,0 +1,88 @@
+
+
+
+\newcommand{\tikzmark}[2]{%
+    \tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {\phantom{#2}};#2%
+}
+
+\newcommand*{\XShift}{0.5ex}%
+\newcommand*{\ArcDistance}{0.075cm}%
+\newcommand*{\OutAngle}{}%
+\newcommand*{\InAngle}{}%
+\newcommand*{\AnchorPoint}{}%
+\newcommand*{\ShortenBegin}{}%
+\newcommand*{\ShortenEnd}{}%
+%
+\NewDocumentCommand{\DrawArrow}{s O{} m m}{%
+    \IfBooleanTF {#1} {% starred variant - draw arrows below
+        \renewcommand*{\OutAngle}{-95}%
+        \renewcommand*{\InAngle}{-85}%
+        \renewcommand*{\AnchorPoint}{south}%
+        \renewcommand*{\ShortenBegin}{-3.5pt}%
+        \renewcommand*{\ShortenEnd}{-3.5pt}%
+        \tikzset{Arrow Style/.style={BottomArrowStyle}}%
+    }{% non-starred - draw arrows above
+        \renewcommand*{\OutAngle}{95}%
+        \renewcommand*{\InAngle}{85}%
+        \renewcommand*{\AnchorPoint}{north}%
+        \renewcommand*{\ShortenBegin}{-3.5pt}%
+        \renewcommand*{\ShortenEnd}{-3.5pt}%
+        \tikzset{Arrow Style/.style={TopArrowStyle}}%
+    }%
+    \begin{tikzpicture}[overlay,remember picture]
+        \draw[
+                ->, thick, distance=\ArcDistance,
+                shorten <=\ShortenBegin, shorten >=\ShortenEnd,
+                out=\OutAngle, in=\InAngle, Arrow Style, #2
+            ] 
+                ($(#3.\AnchorPoint)+(2.0*\XShift,0)$) to 
+                ($(#4.\AnchorPoint)+(0.4*\XShift,0)$);
+    \end{tikzpicture}%
+}
+
+
+\tikzset{BottomArrowStyle/.style={thin, -stealth}}% change arrow style
+10.\tikzmark{Three}{5}\tikzmark{Two}{6}\tikzmark{One}{6}%
+\DrawArrow*[red]{One}{One}%
+\DrawArrow*[brown]{Two}{Two}%
+\DrawArrow*[blue]{Three}{Three}%
+%
+\hspace*{0.25cm}%
+%
+\tikzset{BottomArrowStyle/.style={thin, stealth-}}% change arrow style
+10.\tikzmark{Three}{5}\tikzmark{Two}{6}\tikzmark{One}{6}%
+\DrawArrow*[olive]{One}{One}%
+\DrawArrow*[green]{Two}{Two}%
+\DrawArrow*[magenta]{Three}{Three}%
+\tikzset{BottomArrowStyle/.style={}}% restore to default
+
+\bigskip
+10.\tikzmark{ThreeB}{5}\tikzmark{TwoB}{6}\tikzmark{OneB}{6}%
+\DrawArrow*[red]{OneB}{OneB}%
+\DrawArrow[brown]{TwoB}{TwoB}%
+\DrawArrow*[blue]{ThreeB}{ThreeB}%
+%
+\hspace*{0.25cm}%
+%
+10.\tikzmark{ThreeB}{5}\tikzmark{TwoB}{6}\tikzmark{OneB}{6}%
+\DrawArrow*[olive,<-]{OneB}{OneB}%
+\DrawArrow[green,<-]{TwoB}{TwoB}%
+\DrawArrow*[magenta,->]{ThreeB}{ThreeB}%
+
+\bigskip
+10.\tikzmark{Three}{5}\tikzmark{Two}{6}\tikzmark{One}{6}%
+\DrawArrow*[red,in=-85, out=-95, distance=0.2cm]{One}{Three}%
+%
+\hspace*{0.25cm}%
+%
+10.\tikzmark{Three}{5}\tikzmark{Two}{6}\tikzmark{One}{6}%
+\DrawArrow*[magenta,in=-85, out=-95, distance=0.2cm, <-]{One}{Three}%
+
+
+
+
+
+\tikzmark{Three}{5}\tikzmark{Two}{3}\tikzmark{One}{6}%
+\DrawArrow*[red]{One}{One}%
+\DrawArrow*[brown]{Two}{Two}%
+\DrawArrow*[blue]{Three}{Three}%
